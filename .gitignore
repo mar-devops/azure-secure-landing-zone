@@ -1,0 +1,12 @@
+# Bicep build output
+*.json.bak
+bicep/**/*.json
+!bicep/main.parameters.json
+
+# Azure CLI
+.azure/
+
+# OS / editor noise
+.DS_Store
+*.swp
+.vscode/
