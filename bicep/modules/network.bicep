@@ -1,13 +1,3 @@
-// network.bicep
-// VNet with two subnets:
-//   - snet-app  : delegated to Microsoft.Web/serverFarms, used for App Service regional VNet Integration (outbound)
-//   - snet-data : hosts the private endpoint for the storage account
-//
-// Why two subnets instead of one: the delegation required for App Service VNet Integration
-// (Microsoft.Web/serverFarms) is exclusive - a subnet with that delegation can't also host
-// a private endpoint. Splitting app/data traffic into separate subnets is also how you'd do
-// it in a real environment, since it lets each tier get its own NSG.
-
 param location string
 param vnetName string
 param addressPrefix string
@@ -26,10 +16,6 @@ resource nsgApp 'Microsoft.Network/networkSecurityGroups@2023-09-01' = {
   properties: {
     securityRules: [
       {
-        // Outbound to the data subnet only, on 443 (HTTPS to the storage private endpoint).
-        // Everything else outbound falls through to the default AllowInternetOutBound rule,
-        // which is intentionally left in place here - locking that down further is a good
-        // "next iteration" item, called out in the README.
         name: 'Allow-Outbound-To-Data-Https'
         properties: {
           priority: 100
