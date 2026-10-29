@@ -9,8 +9,8 @@ This isn't meant to be an enterprise landing zone. It's scoped small on purpose 
 
 ## Why this project
 
-Three things AZ-104 candidates and Azure admins commonly get wrong, built as working
-infrastructure instead of exam-answer trivia:
+Three things Azure admins commonly get wrong, built as working
+infrastructure:
 
 1. **Service Endpoint vs. Private Endpoint** - a Service Endpoint keeps traffic on the Azure
    backbone, but the resource still has a public IP and is reachable from outside your VNet
