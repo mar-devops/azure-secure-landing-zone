@@ -1,10 +1,5 @@
 // locks.bicep
 // OPTIONAL, deploy on-demand only - deliberately kept separate from main.bicep.
-//
-// Exam trap this models: resource locks override RBAC. A CanNotDelete lock blocks deletion
-// even for a principal with Owner/Contributor role - RBAC controls *who can act*, the lock
-// controls *whether the action is possible at all*, and the lock wins.
-//
 // Why this is its own file: a CanNotDelete lock on ANY resource inside a resource group
 // blocks `az group delete` for the WHOLE group, not just that resource. If this were wired
 // into main.bicep, every teardown would first require manually hunting down and removing
